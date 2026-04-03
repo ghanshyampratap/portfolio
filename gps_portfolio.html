@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Ghanshyam Pratap Singh | ECE Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Oxanium:wght@300;400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#03080d;--bg1:#060f17;--bg2:#091520;--panel:#0a1a28;
+  --border:#0d2638;--border2:#0e3350;
+  --cyan:#00e5ff;--cyan2:#00b4cc;--cyandim:rgba(0,229,255,.07);
+  --cyanglow:rgba(0,229,255,.30);--amber:#ffb300;--green:#00ff88;
+  --text:#d4ecf7;--muted:#4d7a96;--muted2:#2a4d62;
+  --mono:'Share Tech Mono',monospace;--display:'Oxanium',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--display);line-height:1.65;overflow-x:hidden;cursor:none}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--cyan2);border-radius:2px}
+#cur,#cur-r{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;transform:translate(-50%,-50%)}
+#cur{width:10px;height:10px;background:var(--cyan);box-shadow:0 0 14px var(--cyanglow);transition:width .15s,height .15s}
+#cur-r{width:34px;height:34px;border:1px solid rgba(0,229,255,.45);transition:.2s}
+body:has(a:hover) #cur,body:has(button:hover) #cur{width:16px;height:16px}
+body:has(a:hover) #cur-r,body:has(button:hover) #cur-r{width:48px;height:48px;border-color:var(--cyan)}
+@media(max-width:768px){#cur,#cur-r{display:none}body{cursor:auto}}
+#grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(0,229,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%)}
+#scanlines{position:fixed;inset:0;z-index:1;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.18) 0px,rgba(0,0,0,.18) 1px,transparent 1px,transparent 3px);opacity:.45}
+#pcv{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.55}
+.wrap{max-width:1100px;margin:0 auto;padding:0 2rem}
+section{position:relative;z-index:2;padding:6rem 0}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:.85rem 2.4rem;background:rgba(3,8,13,.88);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+nav.lit{box-shadow:0 0 40px rgba(0,229,255,.08)}
+.logo{font-family:var(--mono);font-size:.9rem;color:var(--cyan);letter-spacing:.1em;display:flex;align-items:center;gap:.5rem}
+.logo-bracket{color:var(--muted)}
+.nav-ul{display:flex;gap:1.4rem;list-style:none;flex-wrap:wrap}
+.nav-ul a{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.nav-ul a:hover{color:var(--cyan);text-decoration:none}
+.nav-ul a::before{content:'> ';color:var(--border2)}
+.hburg{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hburg span{display:block;width:22px;height:2px;background:var(--cyan);border-radius:2px}
+/* SECTION HEAD */
+.sec-head{text-align:center;margin-bottom:3.5rem}
+.sec-tag{font-family:var(--mono);font-size:.72rem;color:var(--cyan);letter-spacing:.22em;text-transform:uppercase;display:flex;align-items:center;justify-content:center;gap:.7rem;margin-bottom:.7rem}
+.sec-tag::before,.sec-tag::after{content:'';flex:1;max-width:55px;height:1px;background:var(--border2)}
+.sec-title{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-.01em;line-height:1.1}
+.sec-title .hi{color:var(--cyan)}
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding-top:80px;background:radial-gradient(ellipse 70% 60% at 50% 40%,rgba(0,229,255,.05) 0%,transparent 70%)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.hero-pre{font-family:var(--mono);font-size:.75rem;color:var(--cyan);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:.6rem;margin-bottom:1.1rem}
+.hero-pre::before{content:'';width:28px;height:1px;background:var(--cyan)}
+.hero-name{font-size:clamp(2.4rem,5vw,4.4rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:.5rem}
+.hero-name .line2{color:var(--cyan);display:block}
+.hero-sub{font-family:var(--mono);font-size:.95rem;color:var(--muted);margin-bottom:1.8rem;min-height:1.5em}
+.hero-sub .tcursor{color:var(--cyan);animation:blink 1s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.hero-desc{color:var(--muted);font-size:.95rem;line-height:1.8;max-width:430px;margin-bottom:2rem}
+.btns{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.72rem 1.7rem;border-radius:3px;font-family:var(--mono);font-size:.78rem;letter-spacing:.09em;font-weight:500;transition:.25s;cursor:none;border:none;clip-path:polygon(8px 0%,100% 0%,100% calc(100% - 8px),calc(100% - 8px) 100%,0% 100%,0% 8px)}
+.btn-p{background:var(--cyan);color:#000;box-shadow:0 0 28px var(--cyanglow)}
+.btn-p:hover{background:#fff;color:#000;text-decoration:none}
+.btn-o{background:transparent;color:var(--cyan);border:1px solid rgba(0,229,255,.4)}
+.btn-o:hover{background:var(--cyandim);border-color:var(--cyan);text-decoration:none}
+.hero-pcb{position:relative;display:flex;align-items:center;justify-content:center}
+.pcb-frame{width:100%;max-width:420px;background:var(--panel);border:1px solid var(--border2);border-radius:12px;overflow:hidden;box-shadow:0 0 60px rgba(0,229,255,.12);animation:floatY 5s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.pcb-bar{display:flex;align-items:center;gap:.5rem;padding:.65rem 1rem;background:#040d14;border-bottom:1px solid var(--border)}
+.pcb-dot{width:9px;height:9px;border-radius:50%}
+.pd-r{background:#ff5f57}.pd-y{background:#febc2e}.pd-g{background:#28c840}
+.pcb-fn{margin-left:auto;font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.pcb-body{padding:1.3rem 1.6rem;font-family:var(--mono);font-size:.79rem;line-height:2}
+.ck{color:#c792ea}.cf{color:#82aaff}.cs{color:#c3e88d}.co{color:var(--cyan)}.cm{color:#455a64}.cn{color:#f78c6c}
+
+/* ═══════════════════════════════════════════
+   SMART HOME DASHBOARD WIDGET
+═══════════════════════════════════════════ */
+.smart-dashboard{
+  width:100%;max-width:420px;
+  background:var(--panel);
+  border:1px solid var(--border2);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 0 60px rgba(0,229,255,.12);
+  animation:floatY 5s ease-in-out infinite;
+  animation-delay:0.5s;
+}
+.sd-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.7rem 1rem;
+  background:#040d14;
+  border-bottom:1px solid var(--border);
+}
+.sd-bar-left{display:flex;align-items:center;gap:.5rem}
+.sd-dot{width:8px;height:8px;border-radius:50%}
+.sd-dot-g{background:var(--green);box-shadow:0 0 6px var(--green)}
+.sd-title{font-family:var(--mono);font-size:.65rem;color:var(--muted);letter-spacing:.12em;text-transform:uppercase}
+.sd-status{font-family:var(--mono);font-size:.62rem;color:var(--green);display:flex;align-items:center;gap:.35rem}
+.sd-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;padding:.9rem 1rem}
+.sd-stat{background:rgba(0,229,255,.04);border:1px solid var(--border);border-radius:8px;padding:.75rem .5rem;text-align:center;transition:.25s}
+.sd-stat:hover{border-color:rgba(0,229,255,.3)}
+.sd-stat-n{display:block;font-family:var(--mono);font-size:1.3rem;font-weight:700;color:var(--cyan)}
+.sd-stat-l{font-family:var(--mono);font-size:.55rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:.15rem}
+.sd-devices{display:flex;flex-direction:column;gap:.4rem;padding:0 1rem 1rem}
+.sd-device{
+  display:flex;align-items:center;gap:.75rem;
+  padding:.55rem .75rem;
+  background:rgba(255,255,255,.02);
+  border:1px solid transparent;
+  border-radius:8px;
+  transition:border-color .25s;
+}
+.sd-device:hover{border-color:rgba(0,229,255,.18)}
+.sd-dev-icon{font-size:.95rem;flex-shrink:0}
+.sd-dev-info{flex:1}
+.sd-dev-name{font-size:.8rem;font-weight:600}
+.sd-dev-proto{font-family:var(--mono);font-size:.58rem;color:var(--muted2);margin-top:.08rem}
+/* Toggle switch */
+.sd-toggle{
+  width:34px;height:19px;
+  border-radius:10px;
+  background:var(--muted2);
+  position:relative;
+  cursor:none;
+  transition:background .3s,box-shadow .3s;
+  flex-shrink:0;
+}
+.sd-toggle::after{
+  content:'';position:absolute;
+  top:2px;left:2px;
+  width:15px;height:15px;
+  background:#fff;border-radius:50%;
+  transition:transform .3s,left .3s;
+}
+.sd-toggle.on{background:var(--cyan);box-shadow:0 0 10px rgba(0,229,255,.5)}
+.sd-toggle.on::after{left:calc(100% - 17px)}
+
+/* ═══════════════════════════════════════════
+   LIGHT MODE
+═══════════════════════════════════════════ */
+body.light-mode{
+  --bg:#EFF4FF;--bg1:#E4EDFB;--bg2:#D8E6F8;--panel:rgba(255,255,255,.9);
+  --border:#C4D4EE;--border2:#A8C0E8;
+  --text:#0D1B2E;--muted:#3D5A80;--muted2:#7A9BBF;
+  background:var(--bg);
+  transition:background .5s,color .5s;
+}
+body.light-mode #grid-bg{opacity:.35}
+body.light-mode #scanlines{opacity:.1}
+body.light-mode #pcv{opacity:.2}
+body.light-mode nav{background:rgba(239,244,255,.92)!important}
+body.light-mode .smart-dashboard,
+body.light-mode .pcb-frame,
+body.light-mode .sk-card,
+body.light-mode .exp-card,
+body.light-mode .proj-card,
+body.light-mode .cert-card,
+body.light-mode .extra-card,
+body.light-mode .stat,
+body.light-mode .sd-stat,
+body.light-mode .clink{background:rgba(255,255,255,.85);border-color:var(--border)}
+body.light-mode .pcb-bar,body.light-mode .sd-bar{background:#E0EBFA}
+body.light-mode .hero-name,
+body.light-mode .sec-title,
+body.light-mode .exp-title,
+body.light-mode .proj-name,
+body.light-mode .cert-name,
+body.light-mode .extra-title{color:#0D1B2E}
+body.light-mode footer{background:var(--bg1)}
+
+/* ═══════════════════════════════════════════
+   LOCK OVERLAY
+═══════════════════════════════════════════ */
+.lock-overlay{
+  position:fixed;inset:0;z-index:800;
+  background:rgba(3,8,13,.94);
+  backdrop-filter:blur(22px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s;
+}
+.lock-overlay.show{opacity:1;pointer-events:auto}
+.lock-box{
+  background:var(--panel);
+  border:1px solid var(--border2);
+  border-radius:18px;
+  padding:2.5rem 2rem;
+  text-align:center;
+  width:300px;
+  box-shadow:0 0 80px rgba(0,229,255,.15),0 30px 80px rgba(0,0,0,.7);
+}
+.lock-icon-big{font-size:2.8rem;margin-bottom:.75rem;display:block}
+.lock-title-big{font-family:var(--display);font-size:1.3rem;font-weight:800;margin-bottom:.2rem}
+.lock-sub{font-family:var(--mono);font-size:.68rem;color:var(--muted);margin-bottom:1.5rem;letter-spacing:.06em}
+.pin-dots{
+  display:flex;justify-content:center;gap:.6rem;
+  margin-bottom:.6rem;height:1.6rem;
+  align-items:center;
+}
+.pin-dot-el{
+  width:12px;height:12px;border-radius:50%;
+  background:var(--border2);
+  transition:background .15s,box-shadow .15s;
+}
+.pin-dot-el.filled{background:var(--cyan);box-shadow:0 0 8px var(--cyanglow)}
+.pin-msg{font-family:var(--mono);font-size:.7rem;color:var(--muted);min-height:1.1rem;margin-bottom:1.2rem}
+.pin-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.pin-key{
+  padding:.8rem .5rem;
+  background:rgba(0,229,255,.05);
+  border:1px solid var(--border2);
+  border-radius:8px;
+  color:var(--text);font-family:var(--mono);font-size:1rem;font-weight:600;
+  cursor:none;
+  transition:background .15s,border-color .15s,transform .1s;
+}
+.pin-key:hover{background:rgba(0,229,255,.14);border-color:var(--cyan)}
+.pin-key:active{transform:scale(.92)}
+.pin-key.del{color:var(--amber);font-size:.8rem}
+.pin-hint{font-family:var(--mono);font-size:.62rem;color:var(--muted2);margin-top:1rem;letter-spacing:.06em}
+
+@keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-8px)}40%{transform:translateX(8px)}60%{transform:translateX(-6px)}80%{transform:translateX(6px)}}
+.pin-dots.shake{animation:shake .45s ease}
+
+/* ═══════════════════════════════════════════
+   SENSOR WIDGET
+═══════════════════════════════════════════ */
+.sensor-widget{
+  position:fixed;bottom:5.5rem;right:1.5rem;z-index:400;
+  width:268px;
+  background:rgba(3,8,13,.96);
+  border:1px solid rgba(0,229,255,.25);
+  border-radius:14px;padding:1rem 1.2rem;
+  backdrop-filter:blur(20px);
+  box-shadow:0 0 40px rgba(0,229,255,.1),0 12px 40px rgba(0,0,0,.6);
+  opacity:0;transform:translateY(16px) scale(.96);pointer-events:none;
+  transition:opacity .4s,transform .4s;
+}
+.sensor-widget.show{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+.sw-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem;padding-bottom:.6rem;border-bottom:1px solid var(--border)}
+.sw-title{font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.08em}
+.sw-live{font-family:var(--mono);font-size:.6rem;color:var(--green);animation:blink 1.4s step-end infinite}
+.sw-row{display:grid;grid-template-columns:72px 1fr 58px;align-items:center;gap:.45rem;margin-bottom:.6rem}
+.sw-label{font-family:var(--mono);font-size:.65rem;color:var(--muted)}
+.sw-bar-bg{height:3px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.sw-bar-fill{height:100%;border-radius:3px;width:50%;transition:width 1.5s cubic-bezier(.4,0,.2,1)}
+.sw-fill-t{background:linear-gradient(90deg,var(--cyan2),var(--cyan))}
+.sw-fill-h{background:linear-gradient(90deg,#8B5CF6,var(--cyan))}
+.sw-fill-c{background:linear-gradient(90deg,var(--cyan),#ffd700)}
+.sw-fill-o{background:linear-gradient(90deg,#ffd700,#ff6b35)}
+.sw-val{font-family:var(--mono);font-size:.68rem;color:var(--text);text-align:right}
+
+/* ═══════════════════════════════════════════
+   CAMERA OVERLAY
+═══════════════════════════════════════════ */
+.cam-overlay{
+  position:fixed;inset:0;z-index:700;
+  background:rgba(3,8,13,.9);
+  backdrop-filter:blur(14px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s;
+}
+.cam-overlay.show{opacity:1;pointer-events:auto}
+.cam-box{
+  background:#000;
+  border:1px solid rgba(0,229,255,.3);
+  border-radius:16px;
+  overflow:hidden;
+  width:min(560px,92vw);
+  box-shadow:0 0 60px rgba(0,229,255,.15),0 30px 80px rgba(0,0,0,.8);
+}
+.cam-topbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.65rem 1rem;
+  background:rgba(0,0,0,.7);
+  border-bottom:1px solid rgba(0,229,255,.12);
+}
+.cam-top-left{font-family:var(--mono);font-size:.68rem;color:var(--muted)}
+.cam-top-right{display:flex;align-items:center;gap:.75rem}
+.cam-rec-badge{font-family:var(--mono);font-size:.62rem;color:#ff4444;animation:blink 1.2s step-end infinite}
+.cam-close-btn{
+  background:rgba(255,68,68,.15);border:1px solid rgba(255,68,68,.3);
+  border-radius:5px;color:#ff4444;
+  font-size:.75rem;padding:.18rem .5rem;cursor:none;
+  transition:background .2s;
+}
+.cam-close-btn:hover{background:rgba(255,68,68,.3)}
+.cam-feed-wrap{position:relative;aspect-ratio:16/9;overflow:hidden}
+#cam-video{width:100%;height:100%;object-fit:cover;display:block;transform:scaleX(-1)}
+.cam-scanline{position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,229,255,.025) 2px,rgba(0,229,255,.025) 4px)}
+.cam-corners{position:absolute;inset:0;pointer-events:none}
+.cc{position:absolute;width:16px;height:16px;border-color:var(--cyan);border-style:solid;opacity:.7}
+.cc.tl{top:10px;left:10px;border-width:2px 0 0 2px}
+.cc.tr{top:10px;right:10px;border-width:2px 2px 0 0}
+.cc.bl{bottom:10px;left:10px;border-width:0 0 2px 2px}
+.cc.br{bottom:10px;right:10px;border-width:0 2px 2px 0}
+.cam-hud{
+  position:absolute;bottom:8px;left:12px;right:12px;
+  display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:.58rem;color:rgba(0,229,255,.65);
+  pointer-events:none;
+}
+
+/* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
+.iot-toast{
+  position:fixed;bottom:5rem;left:50%;
+  transform:translateX(-50%) translateY(14px);
+  background:rgba(3,8,13,.96);
+  border:1px solid var(--border2);
+  border-radius:50px;
+  padding:.55rem 1.3rem;
+  font-family:var(--mono);font-size:.74rem;
+  color:var(--text);
+  backdrop-filter:blur(16px);
+  box-shadow:0 8px 30px rgba(0,0,0,.5);
+  opacity:0;pointer-events:none;
+  transition:opacity .3s,transform .3s;
+  z-index:600;white-space:nowrap;
+}
+.iot-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ABOUT */
+#about{background:var(--bg1)}
+.about-grid{display:grid;grid-template-columns:1fr 1.7fr;gap:5rem;align-items:center}
+.about-vis{display:flex;align-items:center;justify-content:center}
+.about-ring{width:200px;height:200px;border-radius:50%;background:var(--panel);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 0 60px rgba(0,229,255,.14);animation:glowPulse 4s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{box-shadow:0 0 40px rgba(0,229,255,.14)}50%{box-shadow:0 0 80px rgba(0,229,255,.3)}}
+.about-ring::before{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px dashed rgba(0,229,255,.22);animation:spin 22s linear infinite}
+.about-ring::after{content:'';position:absolute;inset:-28px;border-radius:50%;border:1px dashed rgba(0,229,255,.1);animation:spin 36s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.about-init{font-size:3.4rem;font-weight:800;color:var(--cyan);letter-spacing:-.04em;text-shadow:0 0 40px var(--cyanglow)}
+.od{position:absolute;width:8px;height:8px;background:var(--cyan);border-radius:50%;box-shadow:0 0 10px var(--cyan)}
+.od:nth-child(1){top:-4px;left:50%;transform:translateX(-50%)}
+.od:nth-child(2){bottom:14px;right:-4px}
+.od:nth-child(3){bottom:14px;left:-4px}
+.about-text h3{font-size:1.3rem;font-weight:700;margin-bottom:.9rem}
+.about-text p{color:var(--muted);line-height:1.85;margin-bottom:.9rem;font-size:.93rem}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.8rem;margin-top:1.8rem}
+.stat{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:.9rem;text-align:center;transition:.3s}
+.stat:hover{border-color:var(--cyan);box-shadow:0 0 20px var(--cyandim)}
+.stat-n{display:block;font-size:1.7rem;font-weight:800;color:var(--cyan)}
+.stat-l{font-family:var(--mono);font-size:.62rem;color:var(--muted);letter-spacing:.08em}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.3rem}
+.sk-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1.6rem;position:relative;overflow:hidden;transition:.3s}
+.sk-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .3s}
+.sk-card:hover{border-color:rgba(0,229,255,.4);transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,0,0,.5)}
+.sk-card:hover::before{opacity:1}
+.sk-icon{font-size:1.5rem;margin-bottom:.7rem}
+.sk-card h4{font-size:.9rem;font-weight:700;margin-bottom:.9rem;letter-spacing:.02em}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-family:var(--mono);font-size:.65rem;padding:.25rem .6rem;border-radius:3px;background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.14);color:var(--cyan);letter-spacing:.05em;transition:.2s}
+.tag:hover{background:rgba(0,229,255,.14);border-color:var(--cyan)}
+/* EXPERIENCE */
+#experience{background:var(--bg1)}
+.exp-timeline{display:flex;flex-direction:column;gap:1.4rem;max-width:820px;margin:0 auto}
+.exp-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.8rem 2rem;position:relative;overflow:hidden;transition:.3s}
+.exp-card::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(to bottom,var(--cyan),transparent)}
+.exp-card:hover{border-color:rgba(0,229,255,.35);box-shadow:0 8px 40px rgba(0,0,0,.5)}
+.exp-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.68rem;color:var(--cyan);background:var(--cyandim);border:1px solid rgba(0,229,255,.18);padding:.22rem .7rem;border-radius:3px;letter-spacing:.1em;margin-bottom:.7rem}
+.exp-badge .dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:blink 1.4s step-end infinite}
+.exp-badge .dot-off{width:6px;height:6px;background:var(--muted2);border-radius:50%}
+.exp-title{font-size:1.15rem;font-weight:700;margin-bottom:.2rem}
+.exp-org{font-family:var(--mono);font-size:.78rem;color:var(--cyan);margin-bottom:.2rem}
+.exp-loc{font-family:var(--mono);font-size:.7rem;color:var(--muted);margin-bottom:.85rem}
+.exp-list{list-style:none}
+.exp-list li{color:var(--muted);font-size:.88rem;line-height:1.75;padding-left:1.4em;position:relative;margin-bottom:.3rem}
+.exp-list li::before{content:'▸';position:absolute;left:0;color:var(--cyan)}
+/* PROJECTS */
+.proj-filter{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:2.5rem}
+.pf-btn{font-family:var(--mono);font-size:.68rem;padding:.35rem .9rem;border-radius:3px;border:1px solid var(--border2);background:transparent;color:var(--muted);cursor:pointer;transition:.2s;letter-spacing:.08em}
+.pf-btn:hover,.pf-btn.active{border-color:var(--cyan);color:var(--cyan);background:var(--cyandim)}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.4rem}
+.proj-card{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:1.8rem;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:.3s}
+.proj-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan2),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .35s}
+.proj-card:hover{transform:translateY(-5px);border-color:rgba(0,229,255,.35);box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.proj-card:hover::after{transform:scaleX(1)}
+.proj-card.hidden{display:none}
+.proj-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.9rem}
+.proj-icon{font-size:1.8rem}
+.proj-gh{font-family:var(--mono);font-size:.66rem;color:var(--muted);border:1px solid var(--border);padding:.25rem .55rem;border-radius:4px;transition:.2s;text-decoration:none}
+.proj-card:hover .proj-gh{color:var(--cyan);border-color:var(--cyan)}
+.proj-name{font-size:1rem;font-weight:700;margin-bottom:.5rem}
+.proj-desc{color:var(--muted);font-size:.85rem;line-height:1.75;flex:1;margin-bottom:1rem}
+.stack-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.85rem}
+.stag{font-family:var(--mono);font-size:.62rem;padding:.18rem .5rem;border-radius:3px;background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.12);color:var(--muted)}
+.proj-cat{display:inline-block;font-family:var(--mono);font-size:.6rem;padding:.15rem .5rem;border-radius:3px;margin-bottom:.6rem;letter-spacing:.08em}
+.cat-iot{background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);color:var(--cyan)}
+.cat-vlsi{background:rgba(200,120,255,.08);border:1px solid rgba(200,120,255,.2);color:#c878ff}
+.cat-robotics{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);color:var(--green)}
+.cat-ai{background:rgba(255,179,0,.08);border:1px solid rgba(255,179,0,.2);color:var(--amber)}
+/* CERTS */
+#certifications{background:var(--bg1)}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.1rem}
+.cert-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1.4rem;display:flex;gap:1rem;align-items:flex-start;transition:.3s}
+.cert-card:hover{border-color:rgba(0,229,255,.38);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.4)}
+.cert-ico{font-size:1.6rem;flex-shrink:0;margin-top:.1rem}
+.cert-name{font-size:.92rem;font-weight:700;margin-bottom:.25rem}
+.cert-body{color:var(--muted);font-size:.8rem;line-height:1.6}
+.cert-tag{display:inline-block;margin-top:.5rem;font-family:var(--mono);font-size:.62rem;color:var(--amber);background:rgba(255,179,0,.08);border:1px solid rgba(255,179,0,.2);padding:.15rem .5rem;border-radius:3px;letter-spacing:.08em}
+/* EXTRA */
+.extra-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1.1rem}
+.extra-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:1.4rem 1.6rem;display:flex;gap:1rem;align-items:flex-start;transition:.3s}
+.extra-card:hover{border-color:rgba(0,229,255,.35);box-shadow:0 6px 24px rgba(0,0,0,.4);transform:translateY(-3px)}
+.extra-ico{font-size:1.5rem;flex-shrink:0}
+.extra-title{font-size:.94rem;font-weight:700;margin-bottom:.3rem}
+.extra-desc{color:var(--muted);font-size:.83rem;line-height:1.65}
+/* CONTACT */
+#contact{text-align:center;background:radial-gradient(ellipse 55% 45% at 50% 100%,rgba(0,229,255,.07) 0%,transparent 70%)}
+.contact-desc{color:var(--muted);font-size:.95rem;max-width:460px;margin:0 auto 2.2rem;line-height:1.8}
+.email-link{display:inline-block;font-size:clamp(.9rem,2.5vw,1.4rem);font-weight:700;color:var(--cyan);text-shadow:0 0 28px var(--cyanglow);margin-bottom:2.4rem}
+.contact-row{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap}
+.clink{display:flex;align-items:center;gap:.5rem;padding:.75rem 1.4rem;background:var(--panel);border:1px solid var(--border);border-radius:6px;font-family:var(--mono);font-size:.74rem;color:var(--text);transition:.25s;clip-path:polygon(6px 0%,100% 0%,100% calc(100% - 6px),calc(100% - 6px) 100%,0% 100%,0% 6px)}
+.clink:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 24px rgba(0,229,255,.16);transform:translateY(-3px);text-decoration:none}
+footer{position:relative;z-index:2;text-align:center;padding:1.8rem;border-top:1px solid var(--border);font-family:var(--mono);font-size:.7rem;color:var(--muted)}
+footer span{color:var(--cyan)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .55s ease,transform .55s ease}
+.reveal-l.vis{opacity:1;transform:translateX(0)}
+@media(max-width:768px){
+  .hburg{display:flex}
+  .nav-ul{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:rgba(3,8,13,.97);border-bottom:1px solid var(--border);padding:1.2rem 2rem;gap:1rem}
+  .nav-ul.open{display:flex}
+  .hero-grid,.about-grid{grid-template-columns:1fr}
+  .smart-dashboard{display:none}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .sensor-widget{right:.75rem;width:240px}
+}
+</style>
+</head>
+<body>
+<div id="cur"></div><div id="cur-r"></div>
+<div id="grid-bg"></div><div id="scanlines"></div>
+<canvas id="pcv"></canvas>
+
+<!-- ─── TOAST ─── -->
+<div class="iot-toast" id="iot-toast"></div>
+
+<!-- ─── LOCK OVERLAY ─── -->
+<div class="lock-overlay" id="lock-overlay">
+  <div class="lock-box">
+    <span class="lock-icon-big">🔒</span>
+    <div class="lock-title-big">Site Locked</div>
+    <div class="lock-sub">Smart Lock Active — Enter PIN</div>
+    <div class="pin-dots" id="pin-dots">
+      <div class="pin-dot-el" id="pd0"></div>
+      <div class="pin-dot-el" id="pd1"></div>
+      <div class="pin-dot-el" id="pd2"></div>
+      <div class="pin-dot-el" id="pd3"></div>
+    </div>
+    <div class="pin-msg" id="pin-msg">Enter 4-digit PIN</div>
+    <div class="pin-grid">
+      <button class="pin-key" onclick="pinInput('1')">1</button>
+      <button class="pin-key" onclick="pinInput('2')">2</button>
+      <button class="pin-key" onclick="pinInput('3')">3</button>
+      <button class="pin-key" onclick="pinInput('4')">4</button>
+      <button class="pin-key" onclick="pinInput('5')">5</button>
+      <button class="pin-key" onclick="pinInput('6')">6</button>
+      <button class="pin-key" onclick="pinInput('7')">7</button>
+      <button class="pin-key" onclick="pinInput('8')">8</button>
+      <button class="pin-key" onclick="pinInput('9')">9</button>
+      <button class="pin-key del" onclick="pinDel()">⌫</button>
+      <button class="pin-key" onclick="pinInput('0')">0</button>
+      <div></div>
+    </div>
+    <div class="pin-hint">Hint: 1 2 3 4</div>
+  </div>
+</div>
+
+<!-- ─── SENSOR WIDGET ─── -->
+<div class="sensor-widget" id="sensor-widget">
+  <div class="sw-head">
+    <span class="sw-title">📡 ESP32 LIVE DATA</span>
+    <span class="sw-live">● STREAMING</span>
+  </div>
+  <div class="sw-row">
+    <span class="sw-label">Temp</span>
+    <div class="sw-bar-bg"><div class="sw-bar-fill sw-fill-t" id="sw-t-bar"></div></div>
+    <span class="sw-val" id="sw-temp">--</span>
+  </div>
+  <div class="sw-row">
+    <span class="sw-label">Humidity</span>
+    <div class="sw-bar-bg"><div class="sw-bar-fill sw-fill-h" id="sw-h-bar"></div></div>
+    <span class="sw-val" id="sw-hum">--</span>
+  </div>
+  <div class="sw-row">
+    <span class="sw-label">CO₂</span>
+    <div class="sw-bar-bg"><div class="sw-bar-fill sw-fill-c" id="sw-c-bar"></div></div>
+    <span class="sw-val" id="sw-co2">--</span>
+  </div>
+  <div class="sw-row">
+    <span class="sw-label">CO</span>
+    <div class="sw-bar-bg"><div class="sw-bar-fill sw-fill-o" id="sw-o-bar"></div></div>
+    <span class="sw-val" id="sw-co">--</span>
+  </div>
+</div>
+
+<!-- ─── CAMERA OVERLAY ─── -->
+<div class="cam-overlay" id="cam-overlay">
+  <div class="cam-box">
+    <div class="cam-topbar">
+      <span class="cam-top-left">📷 IP CAM-01 · HOMEKIT · H.265</span>
+      <div class="cam-top-right">
+        <span class="cam-rec-badge">⏺ REC</span>
+        <button class="cam-close-btn" id="cam-close-btn">✕ Close</button>
+      </div>
+    </div>
+    <div class="cam-feed-wrap">
+      <video id="cam-video" autoplay muted playsinline></video>
+      <div class="cam-scanline"></div>
+      <div class="cam-corners">
+        <span class="cc tl"></span><span class="cc tr"></span>
+        <span class="cc bl"></span><span class="cc br"></span>
+      </div>
+      <div class="cam-hud">
+        <span id="cam-clock">00:00:00</span>
+        <span>LIVE · GPS-HOME · SECURE</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo"><span class="logo-bracket">[</span>GPS<span class="logo-bracket">]</span></div>
+  <ul class="nav-ul" id="navul">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#extracurricular">Activities</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="hburg" id="hburg"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-pre">IoT · Embedded · VLSI · Smart Home</div>
+        <h1 class="hero-name">Ghanshyam<span class="line2">Pratap Singh</span></h1>
+        <div class="hero-sub"><span id="typed"></span><span class="tcursor">█</span></div>
+        <p class="hero-desc">ECE undergrad at DSCE Bengaluru (CGPA 9.20/10) · IoT Specialist at RiVa Smart · National Hackathon Winner · 23 GitHub Repos · Building connected systems that talk to the world.</p>
+        <div class="btns">
+          <a href="#projects" class="btn btn-p">View Projects</a>
+          <a href="#contact" class="btn btn-o">Contact Me</a>
+        </div>
+      </div>
+
+      <!-- ═══ SMART HOME DASHBOARD ═══ -->
+      <div class="hero-pcb">
+        <div class="smart-dashboard">
+          <div class="sd-bar">
+            <div class="sd-bar-left">
+              <div class="sd-dot sd-dot-g"></div>
+              <span class="sd-title">Smart Home Dashboard</span>
+            </div>
+            <div class="sd-status"><span>●</span> All Systems Online</div>
+          </div>
+          <div class="sd-stats">
+            <div class="sd-stat">
+              <span class="sd-stat-n">40+</span>
+              <div class="sd-stat-l">Devices</div>
+            </div>
+            <div class="sd-stat">
+              <span class="sd-stat-n">120+</span>
+              <div class="sd-stat-l">Automations</div>
+            </div>
+            <div class="sd-stat">
+              <span class="sd-stat-n">15+</span>
+              <div class="sd-stat-l">Projects</div>
+            </div>
+          </div>
+          <div class="sd-devices">
+            <!-- 💡 Smart Lights — OFF by default -->
+            <div class="sd-device">
+              <span class="sd-dev-icon">💡</span>
+              <div class="sd-dev-info">
+                <div class="sd-dev-name">Smart Lights</div>
+                <div class="sd-dev-proto">Matter · Aqara</div>
+              </div>
+              <div class="sd-toggle" id="tog-lights" title="Toggle light mode"></div>
+            </div>
+            <!-- 🔒 Smart Lock — ON by default -->
+            <div class="sd-device">
+              <span class="sd-dev-icon">🔒</span>
+              <div class="sd-dev-info">
+                <div class="sd-dev-name">Smart Lock</div>
+                <div class="sd-dev-proto">Zigbee 3.0</div>
+              </div>
+              <div class="sd-toggle on" id="tog-lock" title="Lock/Unlock site"></div>
+            </div>
+            <!-- 📡 ESP32 Sensors — OFF by default -->
+            <div class="sd-device">
+              <span class="sd-dev-icon">📡</span>
+              <div class="sd-dev-info">
+                <div class="sd-dev-name">ESP32 Sensors</div>
+                <div class="sd-dev-proto">MQTT · WiFi</div>
+              </div>
+              <div class="sd-toggle" id="tog-sensor" title="Live sensor data"></div>
+            </div>
+            <!-- 📷 IP Camera — OFF by default -->
+            <div class="sd-device">
+              <span class="sd-dev-icon">📷</span>
+              <div class="sd-dev-info">
+                <div class="sd-dev-name">IP Camera</div>
+                <div class="sd-dev-proto">HomeKit · H.265</div>
+              </div>
+              <div class="sd-toggle" id="tog-cam" title="Live webcam"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- ═══ END DASHBOARD ═══ -->
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">01 — About</div>
+      <h2 class="sec-title">Who <span class="hi">I Am</span></h2>
+    </div>
+    <div class="about-grid" style="grid-template-columns:1fr">
+      <div class="reveal">
+        <div class="about-text">
+          <h3>Electronics & Communication Engineer</h3>
+          <p>Final-year BE student at DSCE Bengaluru in ECE — CGPA <strong style="color:var(--cyan)">9.20/10</strong>. Class XII from Gyan Niketan School, Patna (94%, CBSE PCM).</p>
+          <p>Currently working as <strong style="color:var(--cyan)">IoT Specialist at RiVa Smart (Khush Enterprises)</strong> — deploying Matter & Thread smart home ecosystems, managing Wi-Fi networks with VLAN, integrating CCTV and Home Assistant automation workflows.</p>
+          <p>Also a <strong style="color:var(--cyan)">Video Editor & Graphic Designer</strong> with 2+ years at The Menta, and active member of <em style="color:var(--cyan)">The Point Seven</em> — DSCE's official VLSI & Embedded Systems Club.</p>
+          <div class="stats-row">
+            <div class="stat"><span class="stat-n" data-count="23">0</span><span class="stat-l">GitHub Repos</span></div>
+            <div class="stat"><span class="stat-n" data-count="15">0</span><span class="stat-l">Projects</span></div>
+            <div class="stat"><span class="stat-n" data-count="12">0</span><span class="stat-l">Certs</span></div>
+            <div class="stat"><span class="stat-n" data-count="9" data-suffix=".20">0</span><span class="stat-l">CGPA</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">02 — Skills</div>
+      <h2 class="sec-title">Tech <span class="hi">Stack</span></h2>
+    </div>
+    <div class="skills-grid">
+      <div class="sk-card reveal"><div class="sk-icon">⌨️</div><h4>Programming</h4><div class="tags"><span class="tag">C</span><span class="tag">C++</span><span class="tag">Embedded C</span><span class="tag">Verilog</span><span class="tag">Assembly</span><span class="tag">Python</span><span class="tag">JavaScript</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">🏠</div><h4>Smart Home & IoT</h4><div class="tags"><span class="tag">Home Assistant</span><span class="tag">Smart Home Automation</span><span class="tag">IoT Device Integration</span><span class="tag">CCTV Systems</span><span class="tag">BMS Integration</span><span class="tag">VLAN Setup</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">📡</div><h4>Protocols</h4><div class="tags"><span class="tag">Matter</span><span class="tag">Thread</span><span class="tag">Zigbee</span><span class="tag">I²C</span><span class="tag">SPI</span><span class="tag">UART</span><span class="tag">CAN</span><span class="tag">LIN</span><span class="tag">RFID</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">🔧</div><h4>Embedded & Hardware</h4><div class="tags"><span class="tag">Arduino</span><span class="tag">ESP32</span><span class="tag">ESP8266</span><span class="tag">Raspberry Pi</span><span class="tag">RISC-V</span><span class="tag">Sensor Interfacing</span><span class="tag">PCB Design</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">🔬</div><h4>EDA & VLSI Tools</h4><div class="tags"><span class="tag">Cadence Virtuoso</span><span class="tag">LTspice</span><span class="tag">Multisim</span><span class="tag">ModelSim</span><span class="tag">Intel Quartus</span><span class="tag">NS-2</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">🛠️</div><h4>Software & Tools</h4><div class="tags"><span class="tag">MATLAB/Simulink</span><span class="tag">Arduino IDE</span><span class="tag">Keil µVision</span><span class="tag">VS Code</span><span class="tag">Git/GitHub</span><span class="tag">Firebase</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">🎨</div><h4>Creative & Design</h4><div class="tags"><span class="tag">Adobe Premiere Pro</span><span class="tag">CapCut</span><span class="tag">Canva</span><span class="tag">Video Editing</span><span class="tag">Graphic Design</span></div></div>
+      <div class="sk-card reveal"><div class="sk-icon">📚</div><h4>Core Knowledge</h4><div class="tags"><span class="tag">Embedded Systems</span><span class="tag">IoT Architectures</span><span class="tag">CMOS Design</span><span class="tag">Analog VLSI</span><span class="tag">RTOS</span><span class="tag">Network Analysis</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">03 — Experience</div>
+      <h2 class="sec-title">Work <span class="hi">History</span></h2>
+    </div>
+    <div class="exp-timeline">
+      <div class="exp-card reveal">
+        <div class="exp-badge"><span class="dot"></span> Jan 2026 – Present</div>
+        <div class="exp-title">IoT Specialist</div>
+        <div class="exp-org">RiVa Smart (Khush Enterprises) · Full-time</div>
+        <div class="exp-loc">📍 Bengaluru, Karnataka, India</div>
+        <ul class="exp-list">
+          <li>Deployed and configured Matter and Thread-based smart home ecosystems across residential and commercial environments.</li>
+          <li>Designed and managed Wi-Fi networks with VLAN segmentation and heatmap analysis.</li>
+          <li>Integrated CCTV surveillance systems and developed automation workflows using Home Assistant on Raspberry Pi.</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-badge"><span class="dot-off"></span> Apr 2025 – Jan 2026</div>
+        <div class="exp-title">IoT & Robotics Project Trainer Intern</div>
+        <div class="exp-org">Robo Kids World · Internship</div>
+        <div class="exp-loc">📍 United Arab Emirates · Remote</div>
+        <ul class="exp-list">
+          <li>Built embedded IoT and robotics systems integrating sensors and microcontrollers.</li>
+          <li>Designed interactive project modules covering sensor integration, motor control, and wireless communication.</li>
+          <li>Mentored students through hands-on workshops bridging hardware prototyping with STEM education.</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-badge"><span class="dot-off"></span> Jan 2024 – Present</div>
+        <div class="exp-title">Technical Team Member</div>
+        <div class="exp-org">The Point Seven — DSCE's VLSI & Embedded Club</div>
+        <div class="exp-loc">📍 Bengaluru, Karnataka, India · On-site</div>
+        <ul class="exp-list">
+          <li>Active member of DSCE's first Electronics-oriented student club focused on VLSI, Embedded Systems, and Core Electronics.</li>
+          <li>Contributed to industry-relevant projects, circuit design workshops, and hands-on training sessions.</li>
+        </ul>
+      </div>
+      <div class="exp-card reveal">
+        <div class="exp-badge"><span class="dot-off"></span> Oct 2023 – Oct 2025</div>
+        <div class="exp-title">Video Editor & Graphic Designer</div>
+        <div class="exp-org">The Menta · Part-time</div>
+        <div class="exp-loc">📍 Bengaluru, Karnataka, India · Remote</div>
+        <ul class="exp-list">
+          <li>Created engaging visual content using CapCut, Adobe Premiere Pro, and Canva.</li>
+          <li>Edited videos, designed graphics, and built digital assets to support brand storytelling.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">04 — Projects</div>
+      <h2 class="sec-title">Built <span class="hi">Things</span></h2>
+    </div>
+    <div class="proj-filter reveal">
+      <button class="pf-btn active" data-filter="all">All</button>
+      <button class="pf-btn" data-filter="iot">IoT</button>
+      <button class="pf-btn" data-filter="vlsi">VLSI</button>
+      <button class="pf-btn" data-filter="robotics">Robotics</button>
+      <button class="pf-btn" data-filter="ai">AI / Health</button>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal" data-cat="iot robotics"><span class="proj-cat cat-iot">IoT</span><div class="proj-head"><div class="proj-icon">🌾</div><a href="https://github.com/ghanshyampratap/Agri_Bot" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">AgriBot — Smart Precision Agriculture</div><p class="proj-desc">🏆 1st Place – National Level Circuit-A-Thon 2024. Smart farming robot with real-time crop monitoring, mobile app control, Google Firebase cloud integration, and ESP32-CAM live streaming.</p><div class="stack-tags"><span class="stag">ESP32-CAM</span><span class="stag">DHT22</span><span class="stag">Firebase</span><span class="stag">Android Studio</span><span class="stag">Soil Sensor</span></div></div>
+      <div class="proj-card reveal" data-cat="ai iot"><span class="proj-cat cat-ai">AI / Health</span><div class="proj-head"><div class="proj-icon">🩺</div><a href="https://github.com/ghanshyampratap/AI-Enabled-Maternal-Health-Monitoring-System" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">AI-Powered Maternal Health Wearable</div><p class="proj-desc">Low-cost (₹800) AI wearable monitoring fetal & maternal heart rate, SpO₂, temperature, and contractions. 95% cost reduction vs market. Real-time web dashboard with Bluetooth/Wi-Fi.</p><div class="stack-tags"><span class="stag">ESP32</span><span class="stag">AI</span><span class="stag">Bluetooth</span><span class="stag">React</span><span class="stag">Vercel</span></div></div>
+      <div class="proj-card reveal" data-cat="vlsi"><span class="proj-cat cat-vlsi">VLSI</span><div class="proj-head"><div class="proj-icon">⚡</div><a href="https://github.com/ghanshyampratap/Design-of-Low-Power-Efficient-Charge-Pump-" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">Low-Power Charge Pump for NVM</div><p class="proj-desc">90nm Dickson charge pump in Cadence Virtuoso generating 19V from 3.3V. Achieved 92.85% power reduction, 100.5% efficiency improvement vs prior designs. Suitable for NAND Flash & EEPROM.</p><div class="stack-tags"><span class="stag">Cadence Virtuoso</span><span class="stag">90nm GPDK</span><span class="stag">Spectre</span></div></div>
+      <div class="proj-card reveal" data-cat="vlsi"><span class="proj-cat cat-vlsi">VLSI</span><div class="proj-head"><div class="proj-icon">🔬</div><a href="https://github.com/ghanshyampratap/StrongARM-Latch-Comparator-Design-Simulation-Cadence-Virtuoso-GPDK-90nm-" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">StrongARM Latch Comparator</div><p class="proj-desc">High-speed, low-power dynamic latch comparator using Cadence Virtuoso GPDK 90nm. Zero static power during precharge, isolation transistors for power reduction, SR latch for clean ADC output.</p><div class="stack-tags"><span class="stag">Cadence Virtuoso</span><span class="stag">GPDK 90nm</span><span class="stag">Spectre</span><span class="stag">SAR ADC</span></div></div>
+      <div class="proj-card reveal" data-cat="iot"><span class="proj-cat cat-iot">IoT</span><div class="proj-head"><div class="proj-icon">🌍</div><a href="https://github.com/ghanshyampratap/Carbon_Emission_Tracker" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">Carbon Emission & Forest Guardian</div><p class="proj-desc">Real-time environmental monitoring: carbon emissions via MQ135, tree fall detection via GY-521 gyroscope, GPS location, instant authority alerts via CallMeBot API. National Hackathon AVINYA 2024.</p><div class="stack-tags"><span class="stag">MQ135</span><span class="stag">GY-521</span><span class="stag">NEO-6M GPS</span><span class="stag">CallMeBot API</span></div></div>
+      <div class="proj-card reveal" data-cat="vlsi"><span class="proj-cat cat-vlsi">VLSI</span><div class="proj-head"><div class="proj-icon">💾</div><a href="https://github.com/ghanshyampratap/Low-Power-6T-SRAM-Design-Conventional-vs-Stacked" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">Low-Power 6T SRAM — Conventional vs Stacked</div><p class="proj-desc">Simulated conventional and stacked 6T SRAM cells in LTspice. Conventional: ~37.9pW vs Stacked: ~7.02pW — achieving ~35% leakage power reduction.</p><div class="stack-tags"><span class="stag">LTspice</span><span class="stag">CMOS</span><span class="stag">SRAM</span><span class="stag">Leakage Analysis</span></div></div>
+      <div class="proj-card reveal" data-cat="robotics"><span class="proj-cat cat-robotics">Robotics</span><div class="proj-head"><div class="proj-icon">🤖</div><a href="https://github.com/ghanshyampratap" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">Obstacle Detection & Removal Bot</div><p class="proj-desc">Autonomous Bluetooth-controlled robot with pick-and-place capability. Ultrasonic obstacle detection, servo gripper arm, L298N motor driver.</p><div class="stack-tags"><span class="stag">Arduino Uno</span><span class="stag">HC-05</span><span class="stag">L298N</span><span class="stag">Servo</span><span class="stag">Ultrasonic</span></div></div>
+      <div class="proj-card reveal" data-cat="robotics"><span class="proj-cat cat-robotics">Robotics</span><div class="proj-head"><div class="proj-icon">🔄</div><a href="https://github.com/ghanshyampratap" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">Dual Rotor Axial Flux Motor (IM-DRAFM)</div><p class="proj-desc">Compact dual-rotor axial flux motor with integrated MCU and sensorless FOC control. 20–30% higher torque vs radial flux motors. Custom PCB, 3D-printed PETG stator.</p><div class="stack-tags"><span class="stag">ESP32</span><span class="stag">MOSFETs</span><span class="stag">PCB Design</span><span class="stag">3D Printing</span><span class="stag">Li-Po</span></div></div>
+      <div class="proj-card reveal" data-cat="iot"><span class="proj-cat cat-iot">IoT</span><div class="proj-head"><div class="proj-icon">📦</div><a href="https://github.com/ghanshyampratap/-Smart_EV_Charger" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">RFID Automated Dispatch System</div><p class="proj-desc">Low-budget (₹2000) warehouse automation using RFID + ESP8266. 95%+ read accuracy, non-line-of-sight detection, real-time cloud logging.</p><div class="stack-tags"><span class="stag">RFID</span><span class="stag">ESP8266</span><span class="stag">Wi-Fi</span><span class="stag">Cloud</span></div></div>
+      <div class="proj-card reveal" data-cat="iot"><span class="proj-cat cat-iot">IoT</span><div class="proj-head"><div class="proj-icon">🔋</div><a href="https://github.com/ghanshyampratap/-Smart_EV_Charger" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">Smart EV Charger</div><p class="proj-desc">Affordable smart EV charger scheduling charging during off-peak hours based on real-time electricity rates and grid load. Mobile app for monitoring.</p><div class="stack-tags"><span class="stag">IoT</span><span class="stag">Energy Management</span><span class="stag">Mobile App</span></div></div>
+      <div class="proj-card reveal" data-cat="iot"><span class="proj-cat cat-iot">IoT</span><div class="proj-head"><div class="proj-icon">🌱</div><a href="https://github.com/ghanshyampratap" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">Smart Flowerpot — Agri Monitor</div><p class="proj-desc">IoT-enabled plant health monitor tracking soil moisture, temperature, and humidity. ESP8266 Wi-Fi, 16x2 LCD, web dashboard with 5-second auto-refresh.</p><div class="stack-tags"><span class="stag">ESP8266</span><span class="stag">DHT11</span><span class="stag">Soil Sensor</span><span class="stag">LCD</span></div></div>
+      <div class="proj-card reveal" data-cat="vlsi"><span class="proj-cat cat-vlsi">VLSI</span><div class="proj-head"><div class="proj-icon">🔁</div><a href="https://github.com/ghanshyampratap/Current_Mirror_Circuits" target="_blank" class="proj-gh">GitHub ↗</a></div><div class="proj-name">MOSFET Current Mirror Circuits</div><p class="proj-desc">Designed Simple, Wilson, Cascode & Low Voltage Cascode current mirrors in Cadence Virtuoso gpdk90. Cascode achieves Vout(min) ≈ 0.4V and Rout ≈ 2MΩ.</p><div class="stack-tags"><span class="stag">Cadence Virtuoso</span><span class="stag">gpdk90</span><span class="stag">Analog Design</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">05 — Certifications & Achievements</div>
+      <h2 class="sec-title">Awards & <span class="hi">Certs</span></h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card reveal"><div class="cert-ico">🏆</div><div><div class="cert-name">National Circuit-A-Thon 2024 — 1st Place</div><div class="cert-body">Secured first place at IEEE DSCE Student Branch for designing AgriBot.</div><span class="cert-tag">WINNER · IEEE DSCE</span></div></div>
+      <div class="cert-card reveal"><div class="cert-ico">⚔️</div><div><div class="cert-name">Op-Amp Wars</div><div class="cert-body">Analog design competition hosted by IIIT Bangalore.</div><span class="cert-tag">IIIT BANGALORE · Nov 2025</span></div></div>
+      <div class="cert-card reveal"><div class="cert-ico">📡</div><div><div class="cert-name">Foundations of Analog VLSI Design Workshop</div><div class="cert-body">Hands-on workshop on analog VLSI design fundamentals, hosted by IEEE.</div><span class="cert-tag">IEEE · Sep 2025</span></div></div>
+      <div class="cert-card reveal"><div class="cert-ico">🔵</div><div><div class="cert-name">Samsung RISC-V Program</div><div class="cert-body">RISC-V architecture and embedded systems program powered by Samsung Semiconductor.</div><span class="cert-tag">SAMSUNG · Jan 2025</span></div></div>
+      <div class="cert-card reveal"><div class="cert-ico">📶</div><div><div class="cert-name">Wireless Communications Onramp</div><div class="cert-body">Completed MathWorks wireless communications onramp course.</div><span class="cert-tag">MATHWORKS · Mar 2025</span></div></div>
+      <div class="cert-card reveal"><div class="cert-ico">📐</div><div><div class="cert-name">NPTEL – Network Analysis</div><div class="cert-body">12-week certification course by IIT Kharagpur covering advanced circuit and network theory.</div><span class="cert-tag">IIT KHARAGPUR</span></div></div>
+      <div class="cert-card reveal"><div class="cert-ico">🧮</div><div><div class="cert-name">MATLAB Onramp + Simulink Onramp</div><div class="cert-body">Completed MATLAB, Simulink, Image Processing & Signal Processing Onramp courses.</div><span class="cert-tag">MATHWORKS</span></div></div>
+      <div class="cert-card reveal"><div class="cert-ico">🤖</div><div><div class="cert-name">Google AI Courses</div><div class="cert-body">Completed Introduction to Generative AI, Responsible AI, and Large Language Models on Google Cloud Skills Boost.</div><span class="cert-tag">GOOGLE CLOUD · 2024</span></div></div>
+      <div class="cert-card reveal"><div class="cert-ico">🏗️</div><div><div class="cert-name">VLSI Design Workshop — 1 Week</div><div class="cert-body">Workshop on VLSI Design, Hardware for Machine Learning & Signal Processing at DSCE.</div><span class="cert-tag">DSCE · Feb 2025</span></div></div>
+      <div class="cert-card reveal"><div class="cert-ico">📜</div><div><div class="cert-name">C++ Certification</div><div class="cert-body">Completed C++ programming certification from Scalar.</div><span class="cert-tag">SCALAR</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXTRA-CURRICULAR -->
+<section id="extracurricular">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">06 — Extra-Curricular</div>
+      <h2 class="sec-title">Beyond <span class="hi">Code</span></h2>
+    </div>
+    <div class="extra-grid">
+      <div class="extra-card reveal"><div class="extra-ico">🔌</div><div><div class="extra-title">The Point Seven — VLSI & Embedded Club</div><div class="extra-desc">Active technical member of DSCE's first Electronics-oriented club. Contributing to VLSI projects, circuit design workshops, and hands-on embedded system sessions since Jan 2024.</div></div></div>
+      <div class="extra-card reveal"><div class="extra-ico">🏆</div><div><div class="extra-title">National & College Hackathons</div><div class="extra-desc">Participated in AVINYA 2024 (24-hour national hackathon), ElectroHack 2025 (autonomous vehicle challenge), Circuit-A-Thon 2024 (1st place winner).</div></div></div>
+      <div class="extra-card reveal"><div class="extra-ico">🎬</div><div><div class="extra-title">Video Editor & Content Creator</div><div class="extra-desc">2+ years of video editing and graphic design at The Menta using Adobe Premiere Pro, CapCut, and Canva.</div></div></div>
+      <div class="extra-card reveal"><div class="extra-ico">🏫</div><div><div class="extra-title">School Head Boy</div><div class="extra-desc">Served as Head Boy at Holy Mission Secondary School — leading team management, mentoring peers, and organizing school events.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-tag">07 — Contact</div>
+      <h2 class="sec-title">Let's <span class="hi">Connect</span></h2>
+    </div>
+    <p class="contact-desc reveal">Open to full-time roles in IoT, Smart Home Systems, Embedded Engineering, and VLSI. Also open to collaborations, research, and creative projects.</p>
+    <a href="mailto:ghanshyamsingh85165@gmail.com" class="email-link reveal">ghanshyamsingh85165@gmail.com</a>
+    <div class="contact-row reveal">
+      <a href="https://linkedin.com/in/ghanshyampratapsingh" target="_blank" class="clink">💼 LinkedIn</a>
+      <a href="https://github.com/ghanshyampratap" target="_blank" class="clink">🐙 GitHub</a>
+      <a href="tel:+919330121233" class="clink">📞 +91 933-012-1233</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built by <span>Ghanshyam Pratap Singh</span> &nbsp;·&nbsp; <span>&lt;/&gt;</span> IoT · Embedded · VLSI · Smart Home &nbsp;·&nbsp; <span>23 repos on GitHub</span></p>
+</footer>
+
+<script>
+/* ─── Cursor ─── */
+const cur=document.getElementById('cur'),curR=document.getElementById('cur-r');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+(function loop(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;cur.style.cssText=`left:${mx}px;top:${my}px`;curR.style.cssText=`left:${rx}px;top:${ry}px`;requestAnimationFrame(loop);})();
+
+/* ─── Nav ─── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('lit',scrollY>40));
+document.getElementById('hburg').addEventListener('click',()=>document.getElementById('navul').classList.toggle('open'));
+
+/* ─── Typed ─── */
+const words=['IoT Specialist','Smart Home Engineer','Embedded Developer','VLSI Enthusiast','Network Automation','Creative Technologist'];
+let wi=0,ci=0,del=false;
+const tel=document.getElementById('typed');
+function typeIt(){const w=words[wi];del?(tel.textContent=w.slice(0,--ci)):(tel.textContent=w.slice(0,++ci));if(!del&&ci===w.length){del=true;setTimeout(typeIt,1700);return}if(del&&ci===0){del=false;wi=(wi+1)%words.length}setTimeout(typeIt,del?55:90);}
+typeIt();
+
+/* ─── Particles ─── */
+(()=>{const cv=document.getElementById('pcv'),ctx=cv.getContext('2d');let W,H,pts=[];const resize=()=>{W=cv.width=innerWidth;H=cv.height=innerHeight};resize();window.addEventListener('resize',resize);class P{constructor(){this.reset()}reset(){this.x=Math.random()*W;this.y=Math.random()*H;this.vx=(Math.random()-.5)*.3;this.vy=(Math.random()-.5)*.3;this.r=Math.random()*1.4+.3;this.a=Math.random()*.4+.08}step(){this.x+=this.vx;this.y+=this.vy;if(this.x<0)this.x=W;if(this.x>W)this.x=0;if(this.y<0)this.y=H;if(this.y>H)this.y=0}draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,229,255,${this.a})`;ctx.fill()}}const N=Math.min(100,Math.floor(W*H/9000));for(let i=0;i<N;i++)pts.push(new P());function frame(){ctx.clearRect(0,0,W,H);for(let i=0;i<pts.length;i++){pts[i].step();pts[i].draw();for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,229,255,${.1*(1-d/110)})`;ctx.lineWidth=.5;ctx.stroke()}}}requestAnimationFrame(frame);}frame();})();
+
+/* ─── Reveal ─── */
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')});},{threshold:.08});
+document.querySelectorAll('.reveal,.reveal-l').forEach(el=>obs.observe(el));
+
+/* ─── Count-up ─── */
+function countUp(){document.querySelectorAll('[data-count]').forEach(el=>{const target=+el.dataset.count,suffix=el.dataset.suffix||'';let c=0;const step=target/45;const id=setInterval(()=>{c=Math.min(c+step,target);el.textContent=Number.isInteger(target)?Math.floor(c)+suffix:c.toFixed(0)+suffix;if(c>=target){el.textContent=target+suffix;clearInterval(id)}},30);});}
+new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)countUp();});},{threshold:.4}).observe(document.querySelector('.stats-row'));
+
+/* ─── Project Filter ─── */
+document.querySelectorAll('.pf-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');const filter=btn.dataset.filter;document.querySelectorAll('.proj-card').forEach(card=>{if(filter==='all'||card.dataset.cat.includes(filter)){card.classList.remove('hidden')}else{card.classList.add('hidden')}});});});
+
+/* ══════════════════════════════════════════════
+   SMART DASHBOARD INTERACTIONS
+══════════════════════════════════════════════ */
+
+/* Toast helper */
+function showToast(msg, dur){
+  dur = dur || 2600;
+  var t = document.getElementById('iot-toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(function(){ t.classList.remove('show'); }, dur);
+}
+
+/* ── 1. SMART LIGHTS → Light / Dark ── */
+var togLights = document.getElementById('tog-lights');
+togLights.addEventListener('click', function(){
+  var isOn = togLights.classList.contains('on');
+  if(isOn){
+    togLights.classList.remove('on');
+    document.body.classList.remove('light-mode');
+    showToast('🌙 Dark mode — lights off');
+  } else {
+    togLights.classList.add('on');
+    document.body.classList.add('light-mode');
+    showToast('☀️ Light mode — lights on!');
+  }
+});
+
+/* ── 2. SMART LOCK → PIN overlay ── */
+var togLock    = document.getElementById('tog-lock');
+var lockOvl    = document.getElementById('lock-overlay');
+var pinMsg     = document.getElementById('pin-msg');
+var pinDots    = document.getElementById('pin-dots');
+var PIN        = '1234';
+var pinVal     = '';
+
+function updateDots(){
+  for(var i=0;i<4;i++){
+    var d = document.getElementById('pd'+i);
+    d.classList.toggle('filled', i < pinVal.length);
+  }
+}
+
+window.pinInput = function(digit){
+  if(pinVal.length >= 4) return;
+  pinVal += digit;
+  updateDots();
+  if(pinVal.length === 4){
+    if(pinVal === PIN){
+      pinMsg.style.color = '#00ff88';
+      pinMsg.textContent = '✓ Unlocked!';
+      setTimeout(function(){
+        lockOvl.classList.remove('show');
+        togLock.classList.add('on');
+        pinVal = ''; updateDots();
+        pinMsg.style.color = '';
+        pinMsg.textContent = 'Enter 4-digit PIN';
+        showToast('🔓 Site unlocked — welcome back!');
+      }, 700);
+    } else {
+      pinMsg.style.color = '#ff4444';
+      pinMsg.textContent = '✗ Wrong PIN — try 1234';
+      pinDots.classList.add('shake');
+      setTimeout(function(){
+        pinVal = ''; updateDots();
+        pinDots.classList.remove('shake');
+        pinMsg.style.color = '';
+        pinMsg.textContent = 'Enter 4-digit PIN';
+      }, 900);
+    }
+  }
+};
+
+window.pinDel = function(){
+  pinVal = pinVal.slice(0,-1);
+  updateDots();
+};
+
+togLock.addEventListener('click', function(){
+  var isOn = togLock.classList.contains('on');
+  if(isOn){
+    /* currently unlocked → click to LOCK */
+    togLock.classList.remove('on');
+    pinVal = ''; updateDots();
+    pinMsg.style.color = '';
+    pinMsg.textContent = 'Enter 4-digit PIN';
+    lockOvl.classList.add('show');
+    showToast('🔒 Site locked — PIN: 1234', 3500);
+  } else {
+    /* already locked, clicking again just re-shows overlay */
+    pinVal = ''; updateDots();
+    lockOvl.classList.add('show');
+  }
+});
+
+/* ── 3. ESP32 SENSORS → Live widget ── */
+var togSensor  = document.getElementById('tog-sensor');
+var sensorWgt  = document.getElementById('sensor-widget');
+var sensorTick = null;
+
+var sv = {
+  temp: { val:24.2, min:20, max:30, step:0.25, unit:'°C',  bar:'sw-t-bar', el:'sw-temp' },
+  hum:  { val:58,   min:40, max:78, step:1.2,  unit:'%',   bar:'sw-h-bar', el:'sw-hum'  },
+  co2:  { val:415,  min:380,max:660,step:7,    unit:' ppm',bar:'sw-c-bar', el:'sw-co2'  },
+  co:   { val:0.8,  min:0.1,max:2.6,step:0.04, unit:' ppm',bar:'sw-o-bar', el:'sw-co'   }
+};
+
+function tickSensors(){
+  Object.keys(sv).forEach(function(k){
+    var s = sv[k];
+    s.val += (Math.random()-.47)*s.step;
+    s.val = Math.max(s.min, Math.min(s.max, s.val));
+    var pct = ((s.val-s.min)/(s.max-s.min))*100;
+    var valEl = document.getElementById(s.el);
+    var barEl = document.getElementById(s.bar);
+    var disp = (k==='temp')?s.val.toFixed(1):(k==='co')?s.val.toFixed(2):Math.round(s.val);
+    if(valEl) valEl.textContent = disp + s.unit;
+    if(barEl) barEl.style.width = pct+'%';
+  });
+}
+
+togSensor.addEventListener('click', function(){
+  var isOn = togSensor.classList.contains('on');
+  if(isOn){
+    togSensor.classList.remove('on');
+    sensorWgt.classList.remove('show');
+    clearInterval(sensorTick);
+    showToast('📡 ESP32 sensors offline');
+  } else {
+    togSensor.classList.add('on');
+    sensorWgt.classList.add('show');
+    tickSensors();
+    sensorTick = setInterval(tickSensors, 1600);
+    showToast('📡 ESP32 online — streaming live sensor data');
+  }
+});
+
+/* ── 4. IP CAMERA → Webcam ── */
+var togCam    = document.getElementById('tog-cam');
+var camOvl    = document.getElementById('cam-overlay');
+var camVideo  = document.getElementById('cam-video');
+var camStream = null;
+
+togCam.addEventListener('click', async function(){
+  var isOn = togCam.classList.contains('on');
+  if(isOn){
+    togCam.classList.remove('on');
+    if(camStream){ camStream.getTracks().forEach(function(t){t.stop();}); camStream=null; }
+    camVideo.srcObject = null;
+    camOvl.classList.remove('show');
+    showToast('📷 Camera offline');
+  } else {
+    try {
+      camStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false});
+      camVideo.srcObject = camStream;
+      camOvl.classList.add('show');
+      togCam.classList.add('on');
+      showToast('📷 IP Camera live — say cheese! 📸');
+    } catch(e) {
+      showToast('📷 Camera permission denied');
+    }
+  }
+});
+
+document.getElementById('cam-close-btn').addEventListener('click', function(){
+  if(camStream){ camStream.getTracks().forEach(function(t){t.stop();}); camStream=null; }
+  camVideo.srcObject = null;
+  camOvl.classList.remove('show');
+  togCam.classList.remove('on');
+});
+
+/* Camera HUD clock */
+setInterval(function(){
+  var el = document.getElementById('cam-clock');
+  if(el){ var n=new Date(); el.textContent=n.toLocaleTimeString('en-US',{hour12:false}); }
+}, 1000);
+
+</script>
+</body>
+</html>
